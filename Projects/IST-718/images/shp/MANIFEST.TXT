@@ -1,0 +1,7 @@
+CountiesBEA.dbf (application/octet-stream) 187981 bytes.
+CountiesBEA.prj (text/plain) 167 bytes.
+CountiesBEA.sbn (application/octet-stream) 30716 bytes.
+CountiesBEA.sbx (application/octet-stream) 2348 bytes.
+CountiesBEA.shp (application/octet-stream) 12477544 bytes.
+CountiesBEA.shp.xml (text/xml) 6792 bytes.
+CountiesBEA.shx (application/octet-stream) 24732 bytes.

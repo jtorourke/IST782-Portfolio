@@ -1,0 +1,51 @@
+---
+version: "3"
+
+services:
+  #MongoDB configuration
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-data:/data/db
+
+  #Hadoop configuration
+  hadoop:
+    image: sequenceiq/hadoop-docker:latest
+    ports:
+      - 50070:50070
+      - 8088:8088
+    environment:
+      - VIRTUAL_HOST=hadoop.localhost
+      - VIRTUAL_PORT=8088
+    volumes:
+      - ./hadoop-data:/opt/hadoop-3.3.1/data
+
+  #Jupyter Notebook configuration
+  jupyter:
+    image: jupyter/base-notebook:latest
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/home/jovyan/work
+
+  #Spark configuration
+  spark:
+    image: bde2020/spark-worker:3.2.0-hadoop3.2
+    environment:
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+    expose:
+      - "8081"
+  spark-master:
+    image: bde2020/spark-master:3.2.0-hadoop3.2
+    ports:
+      - 7077:7077
+      - 8080:8080
+      - 6066:6066
+    expose:
+      - "7077"
+      - "8080"
+      - "6066"
